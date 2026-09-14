@@ -22,11 +22,11 @@ type Store struct {
 func NewStore() *Store {
 	xo := Game{
 		Slug: "xo-arena-football", Title: "XO Arena Football",
-		Creator: Creator{Name: "XO Arena", Handle: "xo-arena", URL: "https://game.vutadex.com"},
+		Creator: Creator{Name: "XO Arena", Handle: "xo-arena", URL: "/play/xo-arena-football"},
 		Description: "Call the plays. Coach your team. Build a dynasty.",
 		Genres: []string{"Sports", "Strategy", "Simulation"}, Tags: []string{"football", "multiplayer", "html5", "free"},
 		Runtime: "html5", Multiplayer: true, Mobile: true,
-		PublishedAt: "2026-09-14", UpdatedAt: "2026-09-14", GameURL: "https://game.vutadex.com", Accent: "#ffd633",
+		PublishedAt: "2026-09-14", UpdatedAt: "2026-09-14", GameURL: "/play/xo-arena-football", Accent: "#ffd633",
 	}
 	return &Store{
 		games: map[string]Game{xo.Slug: xo},

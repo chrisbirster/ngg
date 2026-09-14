@@ -19,7 +19,7 @@ export type GameManifest = {
 export const xoArena: GameManifest = {
   slug: "xo-arena-football",
   title: "XO Arena Football",
-  creator: { name: "XO Arena", handle: "xo-arena", url: "https://game.vutadex.com" },
+  creator: { name: "XO Arena", handle: "xo-arena", url: "/play/xo-arena-football" },
   description: "Call the plays. Coach your team. Build a dynasty.",
   genres: ["Sports", "Strategy", "Simulation"],
   tags: ["football", "multiplayer", "html5", "free"],
@@ -28,7 +28,7 @@ export const xoArena: GameManifest = {
   mobile: true,
   publishedAt: "Sep 14, 2026",
   updatedAt: "Sep 14, 2026",
-  gameUrl: "https://game.vutadex.com",
+  gameUrl: "/play/xo-arena-football",
   accent: "#ffd633",
   launchMode: "local"
 };

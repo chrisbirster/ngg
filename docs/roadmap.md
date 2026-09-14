@@ -21,6 +21,6 @@ All ten visual-plan milestones have an initial end-to-end implementation.
 2. Magic-link authentication.
 3. Moderation queues and creator publishing workflow.
 4. Signed game-manifest ingestion.
-5. Sandboxed XO Arena deployment integration.
+5. Promote the co-located XO Arena preview into a full `/play/xo-arena-football` runtime.
 6. Search and recommendation indexes.
 7. Playwright accessibility and responsive screenshot suites.
