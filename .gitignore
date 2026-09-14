@@ -1,0 +1,6 @@
+node_modules/
+internal/web/dist/*
+!internal/web/dist/index.html
+ngg
+.env
+.DS_Store
