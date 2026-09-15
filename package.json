@@ -9,10 +9,11 @@
     "dev": "vite",
     "dev:api": "go run ./cmd/ngg",
     "typecheck": "tsc --noEmit",
+    "check:styles": "node scripts/verify-solid-stylex.mjs",
     "test": "go test ./...",
     "build:web": "vite build",
     "build:server": "CGO_ENABLED=0 go build -trimpath ./cmd/ngg",
-    "verify": "pnpm typecheck && pnpm build:web && pnpm test && pnpm build:server"
+    "verify": "pnpm typecheck && pnpm check:styles && pnpm build:web && pnpm test && pnpm build:server"
   },
   "dependencies": {
     "@solidjs/router": "next",
