@@ -1,8 +1,8 @@
 FROM node:24-alpine AS web
 WORKDIR /src
 RUN corepack enable
-COPY package.json tsconfig.json vite.config.ts index.html ./
-RUN pnpm install --no-frozen-lockfile
+COPY package.json pnpm-lock.yaml tsconfig.json vite.config.ts index.html ./
+RUN pnpm install --frozen-lockfile
 COPY src ./src
 RUN pnpm build:web
 
