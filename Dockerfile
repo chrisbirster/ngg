@@ -4,7 +4,10 @@ RUN corepack enable
 COPY package.json pnpm-lock.yaml tsconfig.json vite.config.ts index.html ./
 RUN pnpm install --frozen-lockfile
 COPY src ./src
-RUN pnpm build:web
+COPY public ./public
+RUN pnpm build:web \
+    && test -s internal/web/dist/assets/ngg-football-banner.webp \
+    && test -s internal/web/dist/assets/xo-arena-cover.webp
 
 FROM golang:1.26-alpine AS server
 WORKDIR /src
