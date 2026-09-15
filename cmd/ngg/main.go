@@ -15,8 +15,18 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+	store := platform.NewStore()
+	if databaseURL:=os.Getenv("TURSO_DATABASE_URL"); databaseURL!="" {
+		backend,err:=platform.NewTursoBackend(databaseURL,os.Getenv("TURSO_AUTH_TOKEN"),nil)
+		if err!=nil { slog.Error("configure Turso", "error",err); os.Exit(1) }
+		if err:=backend.Migrate(ctx);err!=nil { slog.Error("migrate Turso", "error",err); os.Exit(1) }
+		store,err=platform.NewPersistentStore(ctx,backend)
+		if err!=nil { slog.Error("load Turso state", "error",err); os.Exit(1) }
+		slog.Info("Turso persistence enabled")
+	} else { slog.Warn("TURSO_DATABASE_URL is unset; using ephemeral development storage") }
 	mux := http.NewServeMux()
-	mux.Handle("/api/", platform.NewHandler(platform.NewStore()))
+	mux.Handle("/api/", platform.NewHandler(store))
 	mux.Handle("/", web.Handler())
 
 	addr := os.Getenv("ADDR")

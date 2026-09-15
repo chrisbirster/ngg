@@ -1,6 +1,6 @@
-# Portal implementation status
+# Community platform implementation status
 
-All ten visual-plan milestones have an initial end-to-end implementation.
+The original ten visual milestones remain complete. The ten community-platform milestones now also have a vertical implementation backed by Turso.
 
 | Milestone | Delivered |
 |---|---|
@@ -15,12 +15,26 @@ All ten visual-plan milestones have an initial end-to-end implementation.
 | M8 promotion | Original NGG promotional banner |
 | M9 polish | Responsive breakpoints, sticky sidebar, animation, failure-safe local player |
 
-## Next production work
+## Community milestones
 
-1. PostgreSQL persistence and account ownership.
-2. Magic-link authentication.
-3. Moderation queues and creator publishing workflow.
-4. Signed game-manifest ingestion.
-5. Promote the co-located XO Arena preview into a full `/play/xo-arena-football` runtime.
-6. Search and recommendation indexes.
-7. Playwright accessibility and responsive screenshot suites.
+1. Accounts and public creator profiles.
+2. Game/video drafts, collaboration, credits, and submission.
+3. Direct-upload tickets and immutable object keys.
+4. HTML5/WASM releases with a sandbox-player boundary.
+5. Video releases with a managed-transcoding boundary.
+6. Content comments, ratings, favorites, and playlists.
+7. Forums, mentions, and notifications.
+8. Reports, moderation queue, actions, and an audit event stream.
+9. SDK achievements, leaderboards, and versioned cloud saves.
+10. Five authoritative instant-game rooms: Tic-Tac-Toe, Four in a Row, Checkers, Chess, and Yacht Dice.
+
+## Next production hardening
+
+1. Replace the development session bootstrap with verified magic-link delivery.
+2. Connect upload tickets to R2/S3 signing and virus/archive inspection workers.
+3. Connect video releases to a managed transcoder and signed playback.
+4. Serve uploaded games from a dedicated sandbox origin with a strict CSP.
+5. Add moderator role enforcement and rate limiting at every mutation boundary.
+6. Add WebSocket fanout on top of the authoritative arcade room version protocol.
+7. Add full rules engines and interactive boards for all five arcade games.
+8. Add search indexes and recommendation ranking.
