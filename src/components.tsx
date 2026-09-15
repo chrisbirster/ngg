@@ -5,7 +5,7 @@ import { relatedGames, type GameManifest } from "./catalog";
 import { s } from "./styles.stylex";
 
 export function Header() {
-  const primary = ["Games", "Movies", "Audio", "Art", "Community"];
+  const primary = [["Games","/discover"],["Movies","/discover?kind=video"],["Arcade","/arcade"],["Submit","/submit"],["Community","/forums"]] as const;
   const categories = ["Featured", "Top Rated", "New", "Action", "Adventure", "Puzzle", "Racing", "Sports", "Multiplayer", "More⌄"];
   return <header {...stylex.attrs(s.top)}>
     <div {...stylex.attrs(s.nav)}>
@@ -14,13 +14,13 @@ export function Header() {
         <span {...stylex.attrs(s.logoTag)}>PLAY CREATE SHARE</span>
       </a>
       <nav {...stylex.attrs(s.mainNav)} aria-label="Primary navigation">
-        <For each={primary}>{(item, index) => <a href="#" {...stylex.attrs(s.navLink, index() === 0 && s.activeNav)}>{item}</a>}</For>
+        <For each={primary}>{(item, index) => <a href={item[1]} {...stylex.attrs(s.navLink, index() === 0 && s.activeNav)}>{item[0]}</a>}</For>
       </nav>
       <label {...stylex.attrs(s.searchWrap)}>
         <input aria-label="Search NGG" placeholder="Search games, creators, tags…" {...stylex.attrs(s.search)} />
         <span aria-hidden="true" {...stylex.attrs(s.searchIcon)}>⌕</span>
       </label>
-      <div {...stylex.attrs(s.auth)}><a href="#">Log In</a><a href="#" {...stylex.attrs(s.signup)}>Sign Up</a></div>
+      <div {...stylex.attrs(s.auth)}><a href="/account">Log In</a><a href="/account" {...stylex.attrs(s.signup)}>Sign Up</a></div>
     </div>
     <nav {...stylex.attrs(s.categories)} aria-label="Game categories"><div {...stylex.attrs(s.categoryInner)}>
       <For each={categories}>{(item, index) => <a href="#" {...stylex.attrs(index() === 0 && s.categoryActive)}>{item}</a>}</For>

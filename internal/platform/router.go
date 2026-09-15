@@ -12,12 +12,14 @@ func NewHandler(store *Store) http.Handler {
 	api := &API{store: store}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /api/v1/healthz", func(w http.ResponseWriter, _ *http.Request) { writeJSON(w, http.StatusOK, map[string]string{"status":"ok"}) })
+	mux.HandleFunc("GET /api/v1/readyz", func(w http.ResponseWriter, r *http.Request) { if err:=store.Health(r.Context());err!=nil{writeJSON(w,http.StatusServiceUnavailable,map[string]string{"status":"not ready"});return};writeJSON(w,http.StatusOK,map[string]string{"status":"ready"}) })
 	mux.HandleFunc("GET /api/v1/games/{slug}", api.game)
 	mux.HandleFunc("GET /api/v1/games/{slug}/related", api.related)
 	mux.HandleFunc("POST /api/v1/games/{slug}/reactions", api.react)
 	mux.HandleFunc("POST /api/v1/games/{slug}/comments", api.comment)
 	mux.HandleFunc("POST /api/v1/games/{slug}/playlists", api.playlist)
 	mux.HandleFunc("POST /api/v1/games/{slug}/reports", api.report)
+	api.registerCommunity(mux)
 	return mux
 }
 
@@ -67,6 +69,7 @@ func decode(w http.ResponseWriter, r *http.Request, dst any) bool {
 func writeError(w http.ResponseWriter, err error) {
 	status := http.StatusBadRequest
 	if errors.Is(err, ErrNotFound) { status = http.StatusNotFound }
+	if errors.Is(err, ErrConflict) { status = http.StatusConflict }
 	writeJSON(w,status,map[string]string{"error":err.Error()})
 }
 func writeJSON(w http.ResponseWriter, status int, value any) {

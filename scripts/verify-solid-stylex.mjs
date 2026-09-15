@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 
-const files = ["src/App.tsx", "src/GamePage.tsx", "src/components.tsx"];
+const files = ["src/App.tsx", "src/GamePage.tsx", "src/PortalPage.tsx", "src/components.tsx"];
 const invalid = [];
 let attributeCalls = 0;
 
